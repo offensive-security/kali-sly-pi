@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# git clone https://github.com/offensive-security/kali-arm-build-scripts.git
-# cd kali-arm-build-scripts
-# ./build_deps.sh
-
 basedir=`pwd`/kali-lcd
 wireless=wlan0
 wired=eth0
