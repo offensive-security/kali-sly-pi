@@ -7,7 +7,7 @@ Requires:
 * http://support.netgear.com/product/WNA1000 or similar supported card (by hostapd)
 * http://www.adafruit.com/products/859
 * http://www.amazon.com/HUAWEI-E220-WWAN-HSDPA-MODEM/dp/B004UIVIBS
-
+* http://www.amazon.com/gp/product/B007M54E1M/
 
 Based on:
 
