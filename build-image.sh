@@ -92,7 +92,8 @@ apt-get update
 apt-get -y install git-core binutils ca-certificates initramfs-tools uboot-mkimage
 apt-get -y install locales console-common less nano git
 echo "root:toor" | chpasswd
-sed -i -e 's/KERNEL\!=\"eth\*|/KERNEL\!=\"/' /lib/udev/rules.d/75-persistent-net-generator.rules
+
+echo \# > /lib/udev/rules.d/75-persistent-net-generator.rules
 rm -f /etc/udev/rules.d/70-persistent-net.rules
 apt-get --yes --force-yes install $packages
 update-rc.d ssh enable
