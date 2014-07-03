@@ -1,8 +1,6 @@
 kali-sly-pi
 ===========
 
-# kali-sly-pi
-
 Requires:
 
 * https://learn.adafruit.com/adafruit-16x2-character-lcd-plus-keypad-for-raspberry-pi/
