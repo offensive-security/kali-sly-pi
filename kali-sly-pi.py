@@ -90,10 +90,7 @@ def wifiHospotStop():
 def shutDown():
     print 'Shutting Down'
     lcd.clear()
-    lcd.backlight(lcd.GREEN)
-    lcd.message("Bye Bye")
-    shutDown = subprocess.Popen('sleep 5 && halt', shell=True, stdout=PIPE, stderr=PIPE)
-    lcd.clear()
+    shutDown = subprocess.Popen('halt', shell=True, stdout=PIPE, stderr=PIPE)
     sys.exit(0)
     
 def connectivityTest():
