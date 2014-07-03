@@ -19,6 +19,10 @@ lcd = Adafruit_CharLCDPlate(busnum = 1)
 # To add the module simply define the function below and then add the module name and function name to the modules dictonary.
 # All code the module executes is to be placed in the function.
 
+def commandDone():
+    lcd.clear()
+    lcd.message("Done!\nPress Select")
+
 def wifiHospotStart():
     print "Starting Wifi"
     wifiStart = subprocess.Popen('service hostapd start', shell=True, stderr=PIPE)
@@ -37,9 +41,31 @@ def wifiHospotStart():
     error = iptableStart.communicate()
     errorCheck(error, 'Cannot enable\nNAT', 'Enabling NAT')
     print error
+    commandDone()
 
-    lcd.clear()
-    lcd.message("Done!\nPress Select")
+def openVPNStart():
+    print "Starting OpenVPN"
+    openvpnStart = subprocess.Popen('service openvpn start', shell=True, stderr=PIPE)
+    error = openvpnStart.communicate()
+    errorCheck(error, 'Cannot start\nopenvpn', 'Starting openvpn')
+    print error
+    commandDone()
+
+def wan3GStart():
+    print "Starting 3G"
+    wan3GStart = subprocess.Popen('wvdial wan &', shell=True, stderr=PIPE)
+    error = wan3GStart.communicate()
+    errorCheck(error, 'Cannot start\n3G', 'Starting 3G')
+    print error
+    commandDone()
+
+def openVPNStop():
+    print "Stopping OpenVPN"
+    openvpnStop = subprocess.Popen('service openvpn stop', shell=True, stderr=PIPE)
+    error = openvpnStop.communicate()
+    errorCheck(error, 'Cannot stop\nopenvpn', 'Stopping openvpn')
+    print error
+    commandDone()
 
 def wifiHospotStop():
     print "Stopping Wifi"
@@ -59,9 +85,7 @@ def wifiHospotStop():
     error = iptableStop.communicate()
     errorCheck(error, 'Cannot disable\nNAT', 'Disabling NAT')
     print error
-
-    lcd.clear()
-    lcd.message("Done!\nPress Select.")
+    commandDone()
 
 def shutDown():
     print 'Shutting Down'
@@ -129,6 +153,7 @@ def errorCheck(error, failedMessage, succeedMessage):
 def getPublicIP():
     publicIPUrl = urllib.urlopen("http://my-ip.heroku.com/")
     return publicIPUrl.read()
+    commandDone()
 
 def getPrivateIP():
     s = socket(AF_INET, SOCK_DGRAM)
@@ -137,10 +162,17 @@ def getPrivateIP():
     return privateIp[0]
 
 #Contains all modules which can be run on the device. The key is the displayed name on the LCD and the value is the function name
-modules = {'Start Wifi AP': 'wifiHospotStart',
-           'Stop Wifi AP': 'wifiHospotStop',
-           'Shutdown Kali ': 'shutDown',
-           'Network Test': 'connectivityTest'}
+# 3 4 2 1 5 7 6
+modules = {
+'Start OpenVPN': 'openVPNStart',
+'Stop OpenVPN' : 'openVPNStop',
+'Start Wifi AP': 'wifiHospotStart',
+'Stop Wifi AP' : 'wifiHospotStop',
+'Start 3G Net' : '3GStart',
+'Network Test' : 'connectivityTest',
+'Shutdown Kali': 'shutDown'
+}
+
 displayText = modules.keys()
 # Clears the display
 lcd.clear()

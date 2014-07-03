@@ -51,7 +51,9 @@ auto lo
 iface lo inet loopback
 
 auto $wired
-iface $wired inet dhcp
+iface $wired inet static
+  address 192.168.1.100
+  netmask 255.255.255.0
 
 auto $wireless
 iface $wireless inet static
