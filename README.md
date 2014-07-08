@@ -1,6 +1,8 @@
 kali-sly-pi
 ===========
 
+![Kali Raspberry Pi](https://github.com/offensive-security/kali-sly-pi/imgs/858728707.png)
+
 Requires:
 
 * https://learn.adafruit.com/adafruit-16x2-character-lcd-plus-keypad-for-raspberry-pi/
