@@ -1,7 +1,7 @@
 kali-sly-pi
 ===========
 
-![Kali Raspberry Pi](https://github.com/offensive-security/kali-sly-pi/blob/master/imgs/858728707.png)
+![Kali Raspberry Pi](https://github.com/offensive-security/kali-sly-pi/raw/master/imgs/858728707.png)
 
 Requires:
 
